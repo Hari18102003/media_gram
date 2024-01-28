@@ -36,7 +36,7 @@ const TopBar = () => {
                 <div className='flex gap-3 items-center'>
                     <Link href={`/dashboard/profile/${user._id}`}>
                         <Image
-                            src={"/images/sample.jpg"}
+                            src={user.profileImage ? user.profileImage : "/images/user.png"}
                             alt='profile-image'
                             width={36}
                             height={36}
