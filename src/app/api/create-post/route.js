@@ -7,6 +7,12 @@ import { Post } from "@/models/Post";
 export async function POST(req) {
     connectDB();
     const { image, caption } = await req.json();
+    if (!image || !caption) {
+        return Response.json({
+            success: false,
+            message: "Image or caption missing"
+        });
+    }
     const currentUser = await getServerSession(authOptions);
     const userEmail = currentUser?.user?.email;
     const user = await User.findOne({ email: userEmail });

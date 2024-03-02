@@ -37,13 +37,14 @@ const LeftSideBar = () => {
                     <div className='flex flex-col gap-2 items-center my-9 text-white'>
                         <Link href={`/dashboard/profile/${user._id}`}>
                             <div className='flex flex-col items-center gap-2'>
-                                <Image
-                                    src={user.profileImage ? user.profileImage : "/images/user.png"}
-                                    alt='profile-image'
-                                    width={56}
-                                    height={56}
-                                    className='rounded-full p-[2px] bg-white'
-                                />
+                                <div className='relative rounded-full w-20 h-20'>
+                                    <Image
+                                        src={user.profileImage ? user.profileImage : "/images/user.png"}
+                                        alt='profile-image'
+                                        fill
+                                        className='rounded-full p-[2px] bg-white'
+                                    />
+                                </div>
                                 <h1 className='font-bold text-xl'>{user.username}</h1>
                             </div>
                         </Link>
@@ -72,16 +73,17 @@ const LeftSideBar = () => {
                         ))}
                     </div>
                     <hr />
-                    <div className='my-5 flex flex-col gap-7 pl-9 justify-center'>
+                    <div className='my-5 flex flex-col gap-6 pl-9 justify-center'>
                         <Link href={"/dashboard/manage-account"}>
                             <div className='flex gap-2 items-center'>
-                                <Image
-                                    src={user.profileImage ? user.profileImage : "/images/user.png"}
-                                    alt='profile-image'
-                                    width={40}
-                                    height={40}
-                                    className='rounded-full p-[2px] bg-white'
-                                />
+                                <div className='relative rounded-full w-10 h-10'>
+                                    <Image
+                                        src={user.profileImage ? user.profileImage : "/images/user.png"}
+                                        alt='profile-image'
+                                        fill
+                                        className='rounded-full p-[2px] bg-white'
+                                    />
+                                </div>
                                 <p className='text-white'>Manage Account</p>
                             </div>
                         </Link>

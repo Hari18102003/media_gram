@@ -72,13 +72,14 @@ const Post = ({ post }) => {
                     <div className='flex justify-between items-center'>
                         <Link href={`/dashboard/profile/${post.creator._id}`}>
                             <div className='flex gap-3 items-center'>
-                                <Image
-                                    src={post.creator.profileImage ? post.creator.profileImage : "/images/user.png"}
-                                    alt='profile-image'
-                                    width={40}
-                                    height={40}
-                                    className='rounded-full p-[2px] bg-white'
-                                />
+                                <div className='relative rounded-full w-11 h-11'>
+                                    <Image
+                                        src={post.creator.profileImage ? post.creator.profileImage : "/images/user.png"}
+                                        alt='profile-image'
+                                        fill
+                                        className='rounded-full p-[2px] bg-white'
+                                    />
+                                </div>
                                 <h1 className='text-white'>{post.creator.username}</h1>
                             </div>
                         </Link>
@@ -93,12 +94,11 @@ const Post = ({ post }) => {
                     <div>
                         <p className='text-slate-200 text-sm'>{post.caption}</p>
                     </div>
-                    <div>
+                    <div className='relative rounded-lg w-full h-[400px]'>
                         <Image
                             src={post.image}
                             alt='profile-image'
-                            width={500}
-                            height={500}
+                            fill
                             className='rounded-lg'
                         />
                     </div>

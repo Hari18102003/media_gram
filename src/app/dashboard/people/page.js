@@ -61,8 +61,10 @@ const Peoplepage = () => {
                     {searchUsers.length > 0 && (
                         searchUsers.map(user => (
                             <div key={user._id} className='flex justify-between items-center'>
-                                <Link href={user._id} className='flex items-center gap-4'>
-                                    <Image src={user.profileImage ? user.profileImage : "/images/user.png"} className='rounded-full bg-white p-[2px]' width={40} height={40} alt='profile-img' />
+                                <Link href={`/dashboard/profile/${user._id}`} className='flex items-center gap-4'>
+                                    <div className='relative rounded-full w-10 h-10'>
+                                        <Image src={user.profileImage ? user.profileImage : "/images/user.png"} className='rounded-full bg-white p-[2px]' fill alt='profile-img' />
+                                    </div>
                                     <p className='text-sm text-white'>{user.username}</p>
                                 </Link>
                                 {user.followers?.find(user => user.email === userEmail) ? (

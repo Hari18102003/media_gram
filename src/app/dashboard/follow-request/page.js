@@ -54,7 +54,9 @@ const FollowRequestpage = () => {
                     user.friendRequests.map(user => (
                         <div key={user._id} className='flex gap-5 items-center'>
                             <Link href={`/dashboard/profile/${user._id}`} className='flex items-center gap-4 mr-3'>
-                                <Image src={user.profileImage ? user.profileImage : "/images/user.png"} className='rounded-full bg-white p-[2px]' width={40} height={40} alt='profile-img' />
+                                <div className='relative rounded-full w-10 h-10'>
+                                    <Image src={user.profileImage ? user.profileImage : "/images/user.png"} className='rounded-full bg-white p-[2px]' fill alt='profile-img' />
+                                </div>
                                 <p className='text-white text-sm'>{user.username}</p>
                             </Link>
                             <div className='flex gap-5'>

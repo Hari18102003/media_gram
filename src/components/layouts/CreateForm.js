@@ -11,6 +11,7 @@ const CreateForm = () => {
     const [file, setFile] = useState();
     const [previews, setPreviews] = useState();
     const [created, setCreated] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [caption, setCaption] = useState("");
     const cloudName = process.env.NEXT_PUBLIC_CLOUD_NAME;
 
@@ -25,6 +26,12 @@ const CreateForm = () => {
 
     async function handleCreate(e) {
         e.preventDefault();
+        setLoading(true);
+        if (!file) {
+            setLoading(false);
+            toast.error("Upload Image!")
+            return;
+        }
         const fileData = new FormData();
         fileData.append("file", file);
         fileData.append("upload_preset", "mediagramapp");
@@ -36,6 +43,10 @@ const CreateForm = () => {
             toast.success(res.data.message);
             setCaption("");
             setCreated(true);
+            setLoading(false);
+        } else {
+            toast.error(res.data.message);
+            setLoading(false);
         }
     }
 
@@ -70,14 +81,13 @@ const CreateForm = () => {
                                 setFile(e.target.files[0]);
                             }
                         }}
-                        required
                     />
                 </div>
                 <div className='flex flex-col gap-3'>
                     <label className='text-lg font-semibold'>Caption</label>
                     <textarea value={caption} onChange={e => setCaption(e.target.value)} className='bg-[#1D1927] w-[300px] h-[70px] md:w-[600px] md:h-[120px] text-lg caret-purple-400' required />
                 </div>
-                <button type='submit' className='w-full bg-gradient-to-r from-purple-500 to-pink-500 py-2 rounded-lg text-xl'>Post</button>
+                <button disabled={loading} type='submit' className='w-full mb-5 md:mb-0 disabled:opacity-50 bg-gradient-to-r from-purple-500 to-pink-500 py-2 rounded-lg text-xl'>Post</button>
             </div>
         </form>
     )

@@ -8,6 +8,7 @@ import Image from 'next/image'
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast';
 
 const Profilepage = ({ params }) => {
 
@@ -53,7 +54,9 @@ const Profilepage = ({ params }) => {
             {user && (
                 <div className='w-[360px] md:w-[500px] mb-14 md:mb-0 flex flex-col md:p-5 gap-5 md:gap-9'>
                     <div className='flex items-center gap-2 md:gap-5'>
-                        <Image src={user.profileImage ? user.profileImage : "/images/user.png"} className='rounded-full' alt='profile' width={100} height={100} />
+                        <div className='relative rounded-full w-28 h-28'>
+                            <Image src={user.profileImage ? user.profileImage : "/images/user.png"} className='rounded-full' alt='profile' fill />
+                        </div>
                         <div className='text-white flex flex-col gap-4'>
                             <h1 className='font-semibold'>{user.username}</h1>
                             <div className='flex items-center gap-4'>
@@ -110,7 +113,9 @@ const Profilepage = ({ params }) => {
                                 user.followers.map(follower => (
                                     <div key={follower._id} className='flex justify-between items-center'>
                                         <Link href={`/dashboard/profile/${follower._id}`} className='flex items-center gap-4'>
-                                            <Image src={follower.profileImage ? follower.profileImage : "/images/user.png"} className='rounded-full bg-white p-[2px]' width={40} height={40} alt='profile-img' />
+                                            <div className='relative rounded-full w-11 h-11'>
+                                                <Image src={follower.profileImage ? follower.profileImage : "/images/user.png"} className='rounded-full bg-white p-[2px]' fill alt='profile-img' />
+                                            </div>
                                             <p className='text-sm text-white'>{follower.username}</p>
                                         </Link>
                                         {follower.email !== userEmail && (
@@ -135,7 +140,9 @@ const Profilepage = ({ params }) => {
                                 user.following.map(singleFollowing => (
                                     <div key={singleFollowing._id} className='flex justify-between items-center'>
                                         <Link href={`/dashboard/profile/${singleFollowing._id}`} className='flex items-center gap-4'>
-                                            <Image src={singleFollowing.profileImage ? singleFollowing.profileImage : "/images/user.png"} className='rounded-full bg-white p-[2px]' width={40} height={40} alt='profile-img' />
+                                            <div className='relative rounded-full w-11 h-11'>
+                                                <Image src={singleFollowing.profileImage ? singleFollowing.profileImage : "/images/user.png"} className='rounded-full bg-white p-[2px]' fill alt='profile-img' />
+                                            </div>
                                             <p className='text-sm text-white'>{singleFollowing.username}</p>
                                         </Link>
                                         {singleFollowing.email !== userEmail && (

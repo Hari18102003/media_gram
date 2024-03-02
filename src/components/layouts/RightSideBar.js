@@ -62,7 +62,9 @@ const RightSideBar = () => {
                             user.friendRequests.map(user => (
                                 <div key={user._id} className='flex items-center'>
                                     <Link href={`/dashboard/profile/${user._id}`} className='flex items-center gap-4 mr-3'>
-                                        <Image src={user.profileImage ? user.profileImage : "/images/user.png"} className='rounded-full bg-white p-[2px]' width={40} height={40} alt='profile-img' />
+                                        <div className='relative rounded-full w-8 h-8'>
+                                            <Image src={user.profileImage ? user.profileImage : "/images/user.png"} className='rounded-full bg-white p-[2px]' alt='profile-img' fill />
+                                        </div>
                                         <p className='text-white text-sm'>{user.username}</p>
                                     </Link>
                                     <div className='flex gap-5'>
@@ -82,7 +84,9 @@ const RightSideBar = () => {
                         users.map(user => (
                             <div className='flex justify-between items-center' key={user._id}>
                                 <Link href={`/dashboard/profile/${user._id}`} className='flex items-center gap-4'>
-                                    <Image src={user.profileImage ? user.profileImage : "/images/user.png"} className='rounded-full bg-white p-[2px]' width={40} height={40} alt='profile-img' />
+                                    <div className='relative rounded-full w-12 h-12'>
+                                        <Image src={user.profileImage ? user.profileImage : "/images/user.png"} className='rounded-full bg-white p-[2px]' fill alt='profile-img' />
+                                    </div>
                                     <p className='text-white text-sm'>{user.username}</p>
                                 </Link>
                                 <p className='text-white text-xs'>{user.followers.length}</p>

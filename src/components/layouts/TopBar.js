@@ -35,13 +35,14 @@ const TopBar = () => {
             {user && (
                 <div className='flex gap-3 items-center'>
                     <Link href={`/dashboard/profile/${user._id}`}>
-                        <Image
-                            src={user.profileImage ? user.profileImage : "/images/user.png"}
-                            alt='profile-image'
-                            width={36}
-                            height={36}
-                            className='rounded-full p-[2px] bg-white'
-                        />
+                        <div className='relative rounded-full w-10 h-10'>
+                            <Image
+                                src={user.profileImage ? user.profileImage : "/images/user.png"}
+                                alt='profile-image'
+                                fill
+                                className='rounded-full p-[2px] bg-white'
+                            />
+                        </div>
                     </Link>
                     {user?.friendRequests.length > 0 ? (
                         <Link href={"/dashboard/follow-request"} className='relative'>
